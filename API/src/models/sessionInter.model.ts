@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 
 export interface SessionInter extends mongoose.Document {
     readonly _id: string;
-    readonly theme: string;
+    readonly title: string;
     readonly pu_ht: string;
     readonly location: string;
     readonly startDate: Date;
@@ -12,7 +12,7 @@ export interface SessionInter extends mongoose.Document {
 }
 
 export const SessionInterSchema = new mongoose.Schema({
-    theme: { type: String, default: "" },
+    title: { type: String, default: "" },
     pu_ht: { type: String, default: "" },
     location: { type: String, default: "" },
     startDate: { type: Date, default: Date.now },
