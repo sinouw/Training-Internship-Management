@@ -7,6 +7,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from './core/config/config.module';
 import { ConfigService } from './core/config/config.service';
 import { EventModule } from './shared/event/event.module';
+import { TrainingCenterModule } from './shared/training-center/training-center.module';
+import { SessionInterModule } from './shared/session-inter/session-inter.module';
+import { SessionEmpModule } from './shared/session-emp/session-emp.module';
 
 
 @Module({
@@ -27,7 +30,10 @@ import { EventModule } from './shared/event/event.module';
     AuthModule,
     UsersModule,
     ConfigModule,
-    EventModule
+    EventModule,
+    TrainingCenterModule,
+    SessionInterModule,
+    SessionEmpModule
   ],
   controllers: [AppController],
   providers: [

@@ -1,0 +1,21 @@
+
+import * as mongoose from 'mongoose';
+
+export interface SessionInter extends mongoose.Document {
+    readonly _id: string;
+    readonly theme: string;
+    readonly pu_ht: string;
+    readonly location: string;
+    readonly startDate: Date;
+    readonly endDate: Date;
+    readonly status: boolean;
+}
+
+export const SessionInterSchema = new mongoose.Schema({
+    theme: { type: String, default: "" },
+    pu_ht: { type: String, default: "" },
+    location: { type: String, default: "" },
+    startDate: { type: Date, default: Date.now },
+    endDate: { type: Date, default: Date.now },
+    status: { type: Boolean, default: true },
+}, { timestamps: true });
