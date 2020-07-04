@@ -1,1 +1,122 @@
-<p>session-inter-edit works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 order-md-first order-lg-first  order-last ">
+
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Edit Event</h4>
+                        <p class="card-category">Edit event information</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="sessionInterService.formModel" (ngSubmit)="onSubmit()">
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Title" formControlName="title">
+                                        <mat-error
+                                            *ngIf="sessionInterService.formModel.get('title').hasError('required') && sessionInterService.formModel.get('title').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Location" formControlName="location">
+                                        <mat-error
+                                            *ngIf="sessionInterService.formModel.get('location').hasError('required') && sessionInterService.formModel.get('location').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="PU_HT" formControlName="pu_ht">
+                                        <mat-error
+                                            *ngIf="sessionInterService.formModel.get('pu_ht').hasError('required') && sessionInterService.formModel.get('pu_ht').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Status" formControlName="status">
+                                            <mat-option [value]="true">Active</mat-option>
+                                            <mat-option [value]="false">Not Active</mat-option>
+                                        </mat-select>
+                                        <mat-error
+                                            *ngIf="sessionInterService.formModel.get('status').hasError('required') && sessionInterService.formModel.get('status').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+
+                                    <mat-form-field class="example-full-width">
+                                        <!-- <input matInput placeholder="Start Date" type="datetime-local" formControlName="startDate"> -->
+                                        <input matInput placeholder="Start Date" type="datetime-local"
+                                            formControlName="startDate">
+                                        <mat-error
+                                            *ngIf="sessionInterService.formModel.get('startDate').hasError('required') && sessionInterService.formModel.get('startDate').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="End Date" type="datetime-local"
+                                            formControlName="endDate">
+                                        <mat-error
+                                            *ngIf="sessionInterService.formModel.get('endDate').hasError('required') && sessionInterService.formModel.get('endDate').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Creation Date"
+                                            [value]="sessionInterService.formModel.get('createdAt').value | date : 'medium'"
+                                            disabled>
+                                        <mat-error
+                                            *ngIf="sessionInterService.formModel.get('createdAt').hasError('required') && sessionInterService.formModel.get('createdAt').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
+                        <button mat-raised-button type="submit" (click)="onSubmit()"
+                            [disabled]="sessionInterService.formModel.invalid"
+                            class="btn btn-outline-danger pull-right">Update</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="card card-profile">
+                    <div class="card-avatar" style="width: 150px;height: 150px;background-color: white;">
+                        <!-- <img class="img" src="./assets/img/faces/marc.jpg" /> -->
+                        <div style="padding-top: 50px;font-size: 60px;">
+                            <p *ngIf="!sessionInterService.formModel.value.title;else titleBlocChar"><strong>S</strong>
+                            </p>
+                            <ng-template #titleBlocChar>
+                                <p><strong>{{sessionInterService.formModel.value.title[0]}}</strong></p>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-category text-gray">Session</h6>
+                        <h4 class="card-title" style="display: -webkit-inline-box;">
+                            <i *ngIf="sessionInterService.formModel.value.status;else elseStatusBloc"
+                                style="margin-right: 10px;" class='fa fa-circle font-success f-12'></i>
+                            <ng-template #elseStatusBloc>
+                                <i class='fa fa-circle font-danger f-12' style="margin-right: 10px;"></i>
+                            </ng-template>
+                            <p *ngIf="!sessionInterService.formModel.value.title;else titleBloc">Session Name</p>
+                            <ng-template #titleBloc>
+                                <p>{{sessionInterService.formModel.value.title}}</p>
+                            </ng-template>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

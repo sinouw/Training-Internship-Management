@@ -6,12 +6,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
-export class SessionInterService {
+export class TrainingCenterService {
 
   constructor(private http: HttpClient,private formBuilder : FormBuilder) { 
     this.createFormModel()
   }
-  BaseURI = environment.apiUrl+"session-inter";
+  BaseURI = environment.apiUrl+"training-center";
 
   formModel : FormGroup
 
@@ -19,10 +19,7 @@ export class SessionInterService {
     this.formModel.patchValue({
       _id: body._id,
       title: body.title,
-      pu_ht: body.pu_ht,
       location: body.location,
-      startDate : body.startDate,
-      endDate : body.endDate,
       status : body.status,
       createdAt: body.createdAt,
     })
@@ -32,10 +29,7 @@ export class SessionInterService {
     this.formModel = this.formBuilder.group({
       _id: '',
       title: ['', [Validators.required]],
-      pu_ht: ['', [Validators.required]],
       location: ['', [Validators.required]],
-      startDate : [new Date(), [Validators.required]],
-      endDate : [new Date(), [Validators.required]],
       status : [false, [Validators.required]],
       createdAt: [new Date(), [Validators.required]],
     })

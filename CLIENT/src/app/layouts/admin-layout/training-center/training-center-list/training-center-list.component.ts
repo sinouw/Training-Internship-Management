@@ -2,23 +2,24 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { SessionInterService } from 'app/services/session-inter.service';
+import { TrainingCenterService } from 'app/services/training-center.service';
 import { AccountService } from 'app/services/account.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-session-inter-list',
-  templateUrl: './session-inter-list.component.html',
-  styleUrls: ['./session-inter-list.component.css']
+  selector: 'app-training-center-list',
+  templateUrl: './training-center-list.component.html',
+  styleUrls: ['./training-center-list.component.css']
 })
-export class SessionInterListComponent {
+export class TrainingCenterListComponent {
 
+  
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['position', 'title', 'pu_ht', 'location' , 'startDate', 'endDate','status', 'createdAt', 'action'];
+  displayedColumns: string[] = ['position', 'title', 'location','status', 'createdAt', 'action'];
 
-  constructor(private sessionInterService : SessionInterService,
+  constructor(private trainingCenterService : TrainingCenterService,
     private accountService : AccountService,
     private router : Router) { 
     let token =this.accountService.getDecodedToken();
@@ -38,21 +39,21 @@ export class SessionInterListComponent {
   }
 
   getAllForAdmin() {
-    this.sessionInterService.getAll()
+    this.trainingCenterService.getAll()
     .subscribe((response : any)=>{
-     console.log("sessions : ",response)
+     console.log("training center : ",response)
      this.dataSource = new MatTableDataSource(response);
     this.dataSource.paginator = this.paginator;
     })
   }
 
   editById(body){
-    this.sessionInterService.fillFormModel(body)
-    this.router.navigateByUrl('/sessions-inter/edit')
+    this.trainingCenterService.fillFormModel(body)
+    this.router.navigateByUrl('/training-centers/edit')
   }
 
   deleteById(id,index){
-    this.sessionInterService.deleteById(id)
+    this.trainingCenterService.deleteById(id)
     .subscribe(
       (res: any) => {
         console.log(res);

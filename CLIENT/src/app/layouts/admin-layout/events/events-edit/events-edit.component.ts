@@ -12,7 +12,6 @@ export class EventsEditComponent {
 
   roles: any = ["RH","IT"]
 
-  date: string;
   constructor(private eventService : EventsService,
     private notificationsService :NotificationsService,
     private router : Router) {

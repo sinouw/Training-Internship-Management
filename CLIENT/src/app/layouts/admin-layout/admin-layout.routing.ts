@@ -8,4 +8,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'profile',   component: UserProfileComponent },
     { path:'events',loadChildren:()=> import('../../layouts/admin-layout/events/events.module').then(m=>m.EventsModule)},
     { path:'agents',loadChildren:()=> import('../../layouts/admin-layout/agents/agents.module').then(m=>m.AgentsModule)},
+    { path:'sessions-inter',loadChildren:()=> import('../../layouts/admin-layout/session-inter/session-inter.module').then(m=>m.SessionInterModule)},
+    { path:'training-centers',loadChildren:()=> import('../../layouts/admin-layout/training-center/training-center.module').then(m=>m.TrainingCenterModule)},
 ];
