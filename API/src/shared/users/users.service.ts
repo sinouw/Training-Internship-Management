@@ -1,7 +1,7 @@
 import { User, CreateUserDto } from "../../models/user.model";
 import { InjectModel } from "@nestjs/mongoose";
 import { Injectable } from "@nestjs/common";
-import { Model ,Types} from 'mongoose';
+import { Model, Types } from 'mongoose';
 
 @Injectable()
 export class UserService {
@@ -13,19 +13,28 @@ export class UserService {
     }
 
     async getAllUserDto(userId): Promise<any> {
-        console.log("userId : ",userId);
-        
+        console.log("userId : ", userId);
+        let adminRoles: any = ["admin","rhadmin","intadmin"]
         const users = await this.userModel.aggregate([
             {
-                '$project' : {
-                    password : 0
+                '$project': {
+                    password: 0
                 }
             },
             {
-                '$match' : {
-                    '_id' : {
-                        '$ne' : Types.ObjectId(userId)
-                    }
+                '$match': {
+                    '$and': [
+                        {
+                            '_id': {
+                                '$ne': Types.ObjectId(userId)
+                            }
+                        },
+                        {
+                            'roles' : {
+                                '$nin' : adminRoles
+                            }
+                        }
+                    ]
                 }
             }
         ]);
@@ -40,14 +49,14 @@ export class UserService {
     // Check if user exists
     async UserExists(userID): Promise<boolean> {
         const user = await this.userModel.findById(userID).exec();
-        return user==null?false:true;
+        return user == null ? false : true;
     }
 
     // post a single user
     async addUser(createUserDTO: CreateUserDto): Promise<User> {
         debugger
         const newUser = await this.userModel(createUserDTO);
-        newUser.status =true
+        newUser.status = true
         return newUser.save();
     }
     // Edit user details

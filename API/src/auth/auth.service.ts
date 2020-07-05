@@ -1,7 +1,7 @@
 
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User, defaultAdminDoc, defaultRhDoc, defaultIntDoc } from 'src/models/user.model';
+import { User, defaultAdminDoc, defaultRhDoc, defaultIntDoc, defaultEmpDoc } from 'src/models/user.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import * as bcrypt from 'bcrypt';
@@ -23,6 +23,7 @@ export class AuthService implements OnModuleInit {
     const admin = await this.userModel.findOne({ username: "admin" });
     const rhadmin = await this.userModel.findOne({ username: "rhadmin" });    
     const intadmin = await this.userModel.findOne({ username: "intadmin" });    
+    const employee = await this.userModel.findOne({ username: "employee" });    
     
     if (!admin) {
       let globalAdminBody = await this.userModel(defaultAdminDoc);
@@ -40,6 +41,12 @@ export class AuthService implements OnModuleInit {
       let intAdminBody = await this.userModel(defaultIntDoc);
       console.log("newUser : ", intAdminBody)
       intAdminBody.save();
+    }
+    
+    if (!employee) {
+      let employeeBody = await this.userModel(defaultEmpDoc);
+      console.log("newUser : ", employeeBody)
+      employeeBody.save();
     }
 
   }

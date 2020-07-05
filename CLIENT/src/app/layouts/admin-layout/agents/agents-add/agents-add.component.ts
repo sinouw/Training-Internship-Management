@@ -12,7 +12,7 @@ export class AgentsAddComponent {
 
   @ViewChild('regForm', {static: false}) myForm: NgForm;
   
-  roles: any = ["admin","RH","IT"]
+  roles: any = ["admin","rhadmin","intadmin","employee"]
 
   constructor(private usersService : UsersService,
     private notificationsService: NotificationsService) { 

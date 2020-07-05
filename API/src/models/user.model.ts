@@ -100,3 +100,14 @@ export const defaultAdminDoc = {
     "roles": ["intadmin"],
     "password": "intadmin",
   }
+  
+  export const defaultEmpDoc = {
+    "username": "employee",
+    "firstname": "employee",
+    "lastname": "employee",
+    "phone": "1122334455",
+    "email": "employee@gmail.com",
+    "status": true,
+    "roles": ["employee"],
+    "password": "employee",
+  }
