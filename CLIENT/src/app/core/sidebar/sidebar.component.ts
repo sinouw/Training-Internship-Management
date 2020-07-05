@@ -13,8 +13,9 @@ export const ROUTES: any[] = [
     { role :'admin', path: '/universities/list', title: "Universities List",  icon:'business', class: '' },
     { role :'admin', path: '/levels/list', title: "Levels List",  icon:'layers', class: '' },
     { role :'admin', path: '/internships/list', title: "Internships List",  icon:'article', class: '' },
-    { role :'admin', path: '/agents/list', title: "Employees List",  icon:'people', class: '' },
-    { role :'admin', path: '#', title: "Inters List",  icon:'people', class: '' },
+    { role :'admin', path: '/agents/list', title: "Admins List",  icon:'people', class: '' },
+    { role :'admin', path: '/employees/list', title: "Employees List",  icon:'people', class: '' },
+    { role :'admin', path: '/interns/list', title: "Inters List",  icon:'people', class: '' },
     { path: '/profile', title: "User Profile",  icon:'person', class: '' },
 ];
 

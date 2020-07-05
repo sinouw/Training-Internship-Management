@@ -39,11 +39,8 @@ export class SessionParticipantComponent {
   }
 
   getAllForAdmin() {
-    this.usersService.getAll()
+    this.usersService.getEmployeesAll()
     .subscribe((response : any)=>{
-     console.log("users : ",response)
-     response = response.filter(x=>x.roles.includes('employee'))
-     console.log("form.value : ",this.sessionInterService.formModel.value)
      let formModel = this.sessionInterService.formModel.value
      if (formModel && formModel.participants && formModel.participants.length>0) {
       response.map(x=>{

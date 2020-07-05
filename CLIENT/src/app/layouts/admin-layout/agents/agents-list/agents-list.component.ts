@@ -16,7 +16,7 @@ export class AgentsListComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['position', 'firstname', 'lastname', 'phone', 'roles',  'createdAt', 'action'];
+  displayedColumns: string[] = ['position', 'firstname', 'lastname', 'phone', 'roles', 'status', 'createdAt', 'action'];
 
   constructor(private accountService : AccountService,
     private usersService : UsersService,
@@ -38,7 +38,7 @@ export class AgentsListComponent {
   }
 
   getAllForAdmin() {
-    this.usersService.getAll()
+    this.usersService.getAdminsAll()
     .subscribe((response : any)=>{
      console.log("users : ",response)
      this.dataSource = new MatTableDataSource(response);
@@ -59,7 +59,6 @@ export class AgentsListComponent {
         this.dataSource.data.splice(index, 1);
         this.dataSource = new MatTableDataSource(this.dataSource.data);
         this.dataSource.paginator = this.paginator;
-        // this.toastr.info('House Suppression !', 'House deleted successfully.');
       },
       err => {
         console.log(err);

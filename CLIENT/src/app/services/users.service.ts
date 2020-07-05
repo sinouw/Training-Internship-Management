@@ -71,8 +71,16 @@ export class UsersService {
     }
   }
 
-  getAll(){
-    return this.http.get(this.BaseURI+'/getAllDto')
+  getAdminsAll(){
+    return this.http.get(this.BaseURI+'/getAllAdminsDto')
+  }
+  
+  getInternsAll(){
+    return this.http.get(this.BaseURI+'/getAllInternsDto')
+  }
+  
+  getEmployeesAll(){
+    return this.http.get(this.BaseURI+'/getAllEmployeesDto')
   }
   
   getById(id : string){

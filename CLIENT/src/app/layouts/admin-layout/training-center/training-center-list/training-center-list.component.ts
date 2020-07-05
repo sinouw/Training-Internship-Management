@@ -60,7 +60,6 @@ export class TrainingCenterListComponent {
         this.dataSource.data.splice(index, 1);
         this.dataSource = new MatTableDataSource(this.dataSource.data);
         this.dataSource.paginator = this.paginator;
-        // this.toastr.info('House Suppression !', 'House deleted successfully.');
       },
       err => {
         console.log(err);

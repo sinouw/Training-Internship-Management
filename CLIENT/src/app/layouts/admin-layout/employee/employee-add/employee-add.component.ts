@@ -1,19 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm, ValidationErrors } from '@angular/forms';
 import { UsersService } from 'app/services/users.service';
 import { NotificationsService } from 'app/services/notifications.service';
-import { ValidationErrors, NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-agents-add',
-  templateUrl: './agents-add.component.html',
-  styleUrls: ['./agents-add.component.css']
+  selector: 'app-employee-add',
+  templateUrl: './employee-add.component.html',
+  styleUrls: ['./employee-add.component.css']
 })
-export class AgentsAddComponent {
+export class EmployeeAddComponent {
 
   @ViewChild('regForm', {static: false}) myForm: NgForm;
   
-  roles: any = ["admin","rhadmin","intadmin"]
-  // roles: any = ["admin","rhadmin","intadmin","employee"]
+  roles: any = ["employee"]
 
   constructor(private usersService : UsersService,
     private notificationsService: NotificationsService) { 
@@ -69,4 +68,5 @@ export class AgentsAddComponent {
       }
     );
   }
+
 }

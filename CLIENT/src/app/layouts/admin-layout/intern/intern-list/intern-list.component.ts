@@ -3,23 +3,23 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AccountService } from 'app/services/account.service';
+import { UsersService } from 'app/services/users.service';
 import { Router } from '@angular/router';
-import { LevelService } from 'app/services/level.service';
 
 @Component({
-  selector: 'app-level-list',
-  templateUrl: './level-list.component.html',
-  styleUrls: ['./level-list.component.css']
+  selector: 'app-intern-list',
+  templateUrl: './intern-list.component.html',
+  styleUrls: ['./intern-list.component.css']
 })
-export class LevelListComponent {
+export class InternListComponent {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['position', 'title','status', 'createdAt', 'action'];
+  displayedColumns: string[] = ['position', 'firstname', 'lastname', 'phone', 'roles', 'status', 'createdAt', 'action'];
 
-  constructor(private levelService : LevelService,
-    private accountService : AccountService,
+  constructor(private accountService : AccountService,
+    private usersService : UsersService,
     private router : Router) { 
     let token =this.accountService.getDecodedToken();
     let currentRoles = token.roles;
@@ -38,21 +38,21 @@ export class LevelListComponent {
   }
 
   getAllForAdmin() {
-    this.levelService.getAll()
+    this.usersService.getInternsAll()
     .subscribe((response : any)=>{
-     console.log("training center : ",response)
+     console.log("users : ",response)
      this.dataSource = new MatTableDataSource(response);
     this.dataSource.paginator = this.paginator;
     })
   }
 
   editById(body){
-    this.levelService.fillFormModel(body)
-    this.router.navigateByUrl('/levels/edit')
+    this.usersService.fillFormModel(body)
+    this.router.navigateByUrl('/interns/edit')
   }
 
   deleteById(id,index){
-    this.levelService.deleteById(id)
+    this.usersService.deleteById(id)
     .subscribe(
       (res: any) => {
         console.log(res);
@@ -65,4 +65,5 @@ export class LevelListComponent {
       },
     );
   }
+
 }

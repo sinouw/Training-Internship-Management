@@ -1,19 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm, ValidationErrors } from '@angular/forms';
 import { UsersService } from 'app/services/users.service';
 import { NotificationsService } from 'app/services/notifications.service';
-import { ValidationErrors, NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-agents-add',
-  templateUrl: './agents-add.component.html',
-  styleUrls: ['./agents-add.component.css']
+  selector: 'app-intern-add',
+  templateUrl: './intern-add.component.html',
+  styleUrls: ['./intern-add.component.css']
 })
-export class AgentsAddComponent {
+export class InternAddComponent {
 
   @ViewChild('regForm', {static: false}) myForm: NgForm;
   
-  roles: any = ["admin","rhadmin","intadmin"]
-  // roles: any = ["admin","rhadmin","intadmin","employee"]
+  roles: any = ["intern"]
 
   constructor(private usersService : UsersService,
     private notificationsService: NotificationsService) { 
@@ -55,7 +54,7 @@ export class AgentsAddComponent {
     this.usersService.createNew(body).subscribe(
       (response: any) => {
         console.log("Added Agent :", response)
-        this.notificationsService.showNotification('success', 'Successful Addition - Employee Successfully Added.')
+        this.notificationsService.showNotification('success', 'Successful Addition - Intern Successfully Added.')
         this.usersService.formModel.reset(), 
         this.myForm.resetForm();
         this.usersService.formModel.patchValue({
@@ -69,4 +68,5 @@ export class AgentsAddComponent {
       }
     );
   }
+
 }

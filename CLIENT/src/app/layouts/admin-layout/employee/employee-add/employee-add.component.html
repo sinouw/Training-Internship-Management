@@ -4,11 +4,11 @@
             <div class="col-md-8 order-md-first order-lg-first  order-last">
                 <div class="card">
                     <div class="card-header card-header-info">
-                        <h4 class="card-title">Edit Admin</h4>
-                        <p class="card-category">Edit Admin Details</p>
+                        <h4 class="card-title">Add Employee</h4>
+                        <p class="card-category">Complete Employee Details</p>
                     </div>
                     <div class="card-body">
-                        <form [formGroup]="usersService.formModel" (ngSubmit)="onSubmit()">
+                        <form [formGroup]="usersService.formModel" (ngSubmit)="onSubmit()" #regForm="ngForm">
                             <div class="row">
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
@@ -22,20 +22,20 @@
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Username" formControlName="username" disabled>
-                                        <mat-error
-                                            *ngIf="usersService.formModel.get('username').hasError('required') && usersService.formModel.get('username').touched">
-                                            This field should not be empty.</mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
                                         <mat-select placeholder="Status" formControlName="status">
                                             <mat-option [value]="true">Active</mat-option>
                                             <mat-option [value]="false">Not Active</mat-option>
                                         </mat-select>
                                         <mat-error
                                             *ngIf="usersService.formModel.get('status').hasError('required') && usersService.formModel.get('status').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Username" formControlName="username">
+                                        <mat-error
+                                            *ngIf="usersService.formModel.get('username').hasError('required') && usersService.formModel.get('username').touched">
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -58,6 +58,25 @@
                                     </mat-form-field>
                                 </div>
                             </div>
+                            <div formGroupName="passwords" class="row">
+                                <mat-form-field class="example-full-width" class="col-md-6">
+                                    <input matInput placeholder="Password" type="password" formControlName="password"
+                                        required>
+                                    <mat-error
+                                        *ngIf="usersService.formModel.get('passwords.password').hasError('required') && usersService.formModel.get('passwords.password').touched">
+                                        This field should not be empty.</mat-error>
+                                    <mat-error
+                                        *ngIf="usersService.formModel.get('passwords.password').errors?.minLength">This
+                                        field should not be at least 4 characters.</mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width" class="col-md-6">
+                                    <input matInput placeholder="Confirm Password" type="password"
+                                        formControlName="confirmPassword" required>
+                                    <mat-error
+                                        *ngIf="usersService.formModel.get('passwords.confirmPassword').hasError('required') && usersService.formModel.get('passwords.confirmPassword').touched">
+                                        This field should not be empty.</mat-error>
+                                </mat-form-field>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
@@ -78,40 +97,38 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <button mat-raised-button type="submit" class="btn btn-outline-danger pull-right" >Update</button>
+                            <button mat-raised-button type="submit" class="btn btn-outline-danger pull-right"
+                                [disabled]="usersService.formModel.invalid">Create</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 ">
                 <div class="card card-profile">
-                    <div class="card-avatar">
-                        <a href="javascript:void(0)">
-                            <img class="img"
-                                *ngIf="usersService.formModel.value.avatarUrl && usersService.formModel.value.avatarUrl!='http://localhost:3000/avatars/' ;else avatarBloc"
-                                [src]="usersService.formModel.value.avatarUrl" />
-                            <ng-template #avatarBloc>
-                                <img src="img" src="../../../../assets/img/logo-user1.png">
+                    <div class="card-avatar" style="width: 150px;height: 150px;background-color: white;">
+                        <!-- <img class="img" src="./assets/img/faces/marc.jpg" /> -->
+                        <div style="padding-top: 50px;font-size: 60px;">
+                            <p *ngIf="!usersService.formModel.value.username;else titleBlocChar"><strong>U</strong>
+                            </p>
+                            <ng-template #titleBlocChar>
+                                <p><strong>{{usersService.formModel.value.username[0]}}</strong></p>
                             </ng-template>
-                        </a>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title"
-                            *ngIf="!usersService.formModel.value.lastname && !usersService.formModel.value.firstname ;else elseNameBloc">
-                            Happy User</h4>
-                        <ng-template #elseNameBloc>
-                            <h4 class="card-title">
-                                <i *ngIf="usersService.formModel.value.status;else elseStatusBloc"
+                        <h6 class="card-category text-gray">User</h6>
+                        <h4 class="card-title" style="display: -webkit-inline-box;">
+                              <i *ngIf="usersService.formModel.value.status;else elseStatusBloc"
                                 style="margin-right: 10px;" class='fa fa-circle font-success f-12'></i>
                             <ng-template #elseStatusBloc>
                                 <i class='fa fa-circle font-danger f-12' style="margin-right: 10px;"></i>
                             </ng-template>
-                                {{usersService.formModel.value.lastname+' '+usersService.formModel.value.firstname}}
-                            </h4>
-                        </ng-template>
-                        <input type="file" id="myfile" name="myfile" accept="image/*" style="display:none;"
-                            (change)="UploadImage($event.target.files)">
+                            <p *ngIf="!usersService.formModel.value.username;else titleBloc">Username</p>
+                            <ng-template #titleBloc>
+                                <p>{{usersService.formModel.value.username}}</p>
+                            </ng-template>
+                        </h4>
                     </div>
                 </div>
             </div>

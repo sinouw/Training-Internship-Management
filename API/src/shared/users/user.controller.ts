@@ -32,10 +32,26 @@ export class UserController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Get('getAllDto')
+    @Get('getAllAdminsDto')
     async getAllUserSmallerDto(@Res() res,@Req() req) {
         const id = req.user._id
-        const users = await this.userService.getAllUserDto(id);
+        const users = await this.userService.getAllAdminsDto(id);
+        return res.status(HttpStatus.OK).json(users);
+    }
+    
+    @UseGuards(AuthGuard('jwt'))
+    @Get('getAllEmployeesDto')
+    async getAllEmployeesDto(@Res() res,@Req() req) {
+        const id = req.user._id
+        const users = await this.userService.getAllEmployeesDto(id);
+        return res.status(HttpStatus.OK).json(users);
+    }
+    
+    @UseGuards(AuthGuard('jwt'))
+    @Get('getAllInternsDto')
+    async getAllInternsDto(@Res() res,@Req() req) {
+        const id = req.user._id
+        const users = await this.userService.getAllInternsDto(id);
         return res.status(HttpStatus.OK).json(users);
     }
 

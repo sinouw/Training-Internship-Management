@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'app/services/users.service';
+import { Router } from '@angular/router';
 import { NotificationsService } from 'app/services/notifications.service';
 import { ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-agents-edit',
-  templateUrl: './agents-edit.component.html',
-  styleUrls: ['./agents-edit.component.css']
+  selector: 'app-employee-edit',
+  templateUrl: './employee-edit.component.html',
+  styleUrls: ['./employee-edit.component.css']
 })
-export class AgentsEditComponent {
+export class EmployeeEditComponent {
 
-  roles: any = ["admin","rhadmin","intadmin"]
-  // roles: any = ["admin","rhadmin","intadmin","employee"]
+  roles: any = ["employee"]
 
   constructor(private usersService: UsersService,
     private router: Router,
     private notificationsService: NotificationsService) {
     if (!this.usersService.formModel.value._id) {
-      this.router.navigateByUrl('agents/list')
+      this.router.navigateByUrl('employees/list')
     } else {
       delete this.usersService.formModel.value.passwords
       console.log("formModel : ", this.usersService.formModel.value)
@@ -54,7 +53,7 @@ export class AgentsEditComponent {
     this.usersService.editById(this.usersService.formModel.value._id,body).subscribe(
       (response: any) => {
         console.log("Edited Agent :", response)
-        this.notificationsService.showNotification('success', 'Successful Edition - Agent Successfully Edited.')
+        this.notificationsService.showNotification('success', 'Successful Edition - Employee Successfully Edited.')
       },
       err => {
         console.log("err : ", err)
@@ -62,5 +61,4 @@ export class AgentsEditComponent {
       }
     );
   }
-
 }

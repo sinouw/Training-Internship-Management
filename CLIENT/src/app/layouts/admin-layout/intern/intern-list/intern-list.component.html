@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-info">
-                        <h4 class="card-title ">Admins Table</h4>
-                        <p class="card-category">Manage Admins</p>
+                        <h4 class="card-title ">Interns Table</h4>
+                        <p class="card-category">Manage Interns</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -13,8 +13,8 @@
                                 <mat-form-field style="width:80%">
                                     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
                                 </mat-form-field>
-                                <button mat-raised-button class="btn btn-outline-danger" routerLink="/agents/add">Add
-                                    Admin</button>
+                                <button mat-raised-button class="btn btn-outline-danger" routerLink="/interns/add">Add
+                                    Intern</button>
                             </div>
                             <div class="table-responsive-x" *ngIf="dataSource && dataSource.data.length>0">
                                 <table mat-table [dataSource]="dataSource" class="w-100 table-scroll-wrap">

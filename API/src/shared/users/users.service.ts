@@ -12,9 +12,8 @@ export class UserService {
         return users;
     }
 
-    async getAllUserDto(userId): Promise<any> {
-        console.log("userId : ", userId);
-        let adminRoles: any = ["admin","rhadmin","intadmin"]
+    async getAllAdminsDto(userId): Promise<any> {
+        let adminRoles: any = ["rhadmin","intadmin"]
         const users = await this.userModel.aggregate([
             {
                 '$project': {
@@ -31,7 +30,7 @@ export class UserService {
                         },
                         {
                             'roles' : {
-                                '$nin' : adminRoles
+                                '$in' : adminRoles
                             }
                         }
                     ]
@@ -40,6 +39,62 @@ export class UserService {
         ]);
         return users;
     }
+    
+    async getAllEmployeesDto(userId): Promise<any> {
+        const users = await this.userModel.aggregate([
+            {
+                '$project': {
+                    password: 0
+                }
+            },
+            {
+                '$match': {
+                    '$and': [
+                        {
+                            '_id': {
+                                '$ne': Types.ObjectId(userId)
+                            }
+                        },
+                        {
+                            'roles' : {
+                                '$eq' : "employee"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]);
+        return users;
+    }
+    
+    async getAllInternsDto(userId): Promise<any> {
+        const users = await this.userModel.aggregate([
+            {
+                '$project': {
+                    password: 0
+                }
+            },
+            {
+                '$match': {
+                    '$and': [
+                        {
+                            '_id': {
+                                '$ne': Types.ObjectId(userId)
+                            }
+                        },
+                        {
+                            'roles' : {
+                                '$eq' : "Intern"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]);
+        return users;
+    }
+
+
     // Get a single user
     async getUser(userID): Promise<User> {
         const user = await this.userModel.findById(userID).exec();
@@ -56,7 +111,7 @@ export class UserService {
     async addUser(createUserDTO: CreateUserDto): Promise<User> {
         debugger
         const newUser = await this.userModel(createUserDTO);
-        newUser.status = true
+        // newUser.status = true
         return newUser.save();
     }
     // Edit user details
