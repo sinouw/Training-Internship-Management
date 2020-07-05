@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class SessionInterService {
   BaseURI = environment.apiUrl+"session-inter";
 
   formModel : FormGroup
-
+  participantsDataSource = new MatTableDataSource();
+  
   fillFormModel(body){
     this.formModel.patchValue({
       _id: body._id,
@@ -24,6 +26,8 @@ export class SessionInterService {
       startDate : body.startDate,
       endDate : body.endDate,
       status : body.status,
+      centersList : body.centersList,
+      participants : body.participants,
       createdAt: body.createdAt,
     })
   }
@@ -33,6 +37,8 @@ export class SessionInterService {
       _id: '',
       title: ['', [Validators.required]],
       pu_ht: ['', [Validators.required]],
+      centersList: [],
+      participants: [],
       location: ['', [Validators.required]],
       startDate : [new Date(), [Validators.required]],
       endDate : [new Date(), [Validators.required]],

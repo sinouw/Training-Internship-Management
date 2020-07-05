@@ -8,6 +8,8 @@ export interface SessionInter extends mongoose.Document {
     readonly location: string;
     readonly startDate: Date;
     readonly endDate: Date;
+    readonly centersList: Array<string>;
+    readonly participants: Array<string>;
     readonly status: boolean;
 }
 
@@ -18,4 +20,6 @@ export const SessionInterSchema = new mongoose.Schema({
     startDate: { type: Date, default: Date.now },
     endDate: { type: Date, default: Date.now },
     status: { type: Boolean, default: true },
+    centersList: { type: Array, default: [] },
+    participants: { type: Array, default: [] },
 }, { timestamps: true });

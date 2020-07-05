@@ -23,6 +23,13 @@ export class SessionInterAddComponent {
 
   onSubmit(){
     console.log("this.formModel.value : ",this.sessionInterService.formModel.value)
+    let participants = []
+    this.sessionInterService.participantsDataSource.data.map((x:any)=>{
+      if (x.checked) {
+        participants.push(x._id)
+      }
+    })
+    this.sessionInterService.formModel.patchValue({ participants : participants})
     this.sessionInterService.createNew(this.sessionInterService.formModel.value)
     .subscribe(response=>{
       console.log("Added successfully : ",response)

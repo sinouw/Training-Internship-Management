@@ -9,8 +9,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -26,10 +27,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatOptionModule,
     MatSelectModule,
     MatTooltipModule,
-    MatDatepickerModule
-
+    MatDatepickerModule,
+    MatTabsModule,
+    MatCheckboxModule
   ],
-  exports : [
+  exports: [
     MatButtonModule,
     MatNativeDateModule,
     MatFormFieldModule,
@@ -40,8 +42,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatOptionModule,
     MatSelectModule,
     MatTooltipModule,
-    MatDatepickerModule
-    
+    MatDatepickerModule,
+    MatTabsModule,
+    MatCheckboxModule
+
   ]
 })
 export class MaterialModule { }

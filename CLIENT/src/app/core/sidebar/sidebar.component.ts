@@ -3,16 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 declare const $: any;
-declare interface RouteInfo {
-    path: string;
-    title: string;
-    icon: string;
-    class: string;
-}
+
 export const ROUTES: any[] = [
     { role :'admin', path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
     { path: '/events/calendar', title: "Calendar",  icon:'event', class: '' },
-    { role :'admin', path: '/events/list', title: "Events List",  icon:'event_note', class: '' },
+    // { role :'admin', path: '/events/list', title: "Events List",  icon:'event_note', class: '' },
     { role :'admin', path: '/sessions-inter/list', title: "Sessions Inter List",  icon:'event_note', class: '' },
     { role :'admin', path: '/training-centers/list', title: "Training Centers List",  icon:'layers', class: '' },
     { role :'admin', path: '/agents/list', title: "Agents List",  icon:'people', class: '' },

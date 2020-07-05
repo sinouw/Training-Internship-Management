@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './helpers/auth.interceptor';
+import { MaterialModule } from './core/material/material.module';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
     RouterModule,
     AppRoutingModule,
     ClientModule,
+    MaterialModule
     
   ],
   declarations: [

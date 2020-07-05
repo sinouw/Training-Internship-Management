@@ -27,6 +27,13 @@ export class SessionInterEditComponent {
    }
 
   onSubmit(){
+    let participants = []
+    this.sessionInterService.participantsDataSource.data.map((x:any)=>{
+      if (x.checked) {
+        participants.push(x._id)
+      }
+    })
+    this.sessionInterService.formModel.patchValue({ participants : participants})
     console.log("this.formModel.value : ",this.sessionInterService.formModel.value)
     this.sessionInterService.editById(this.sessionInterService.formModel.value._id,this.sessionInterService.formModel.value)
     .subscribe(response=>{
