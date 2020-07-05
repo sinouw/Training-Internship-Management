@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { Univercity } from 'src/models/internships.model';
+import { University } from 'src/models/internships.model';
 
 @Injectable()
 export class UnviervcityService {
-    constructor(@InjectModel('Univercity') private readonly Model: Model<Univercity>) { }
+    constructor(@InjectModel('Univercity') private readonly Model: Model<University>) { }
 
     // fetch all documents
     async getAll(): Promise<Event[]> {

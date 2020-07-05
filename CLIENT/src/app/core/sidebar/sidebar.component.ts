@@ -10,6 +10,9 @@ export const ROUTES: any[] = [
     // { role :'admin', path: '/events/list', title: "Events List",  icon:'event_note', class: '' },
     { role :'admin', path: '/sessions-inter/list', title: "Sessions Inter List",  icon:'event_note', class: '' },
     { role :'admin', path: '/training-centers/list', title: "Training Centers List",  icon:'layers', class: '' },
+    { role :'admin', path: '/universities/list', title: "Universities List",  icon:'layers', class: '' },
+    { role :'admin', path: '/levels/list', title: "Levels List",  icon:'layers', class: '' },
+    { role :'admin', path: '/internships/list', title: "Internships List",  icon:'layers', class: '' },
     { role :'admin', path: '/agents/list', title: "Agents List",  icon:'people', class: '' },
     { path: '/profile', title: "User Profile",  icon:'person', class: '' },
 ];

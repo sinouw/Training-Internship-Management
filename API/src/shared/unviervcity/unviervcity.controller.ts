@@ -1,7 +1,7 @@
 import { Controller, Get, Res, HttpStatus, Param, NotFoundException, Post, Body, Put, Delete } from '@nestjs/common';
 import { UnviervcityService } from './unviervcity.service';
 
-@Controller('unviervcity')
+@Controller('unviervsity')
 export class UnviervcityController {
 
     constructor(private unviervcityService: UnviervcityService) { }

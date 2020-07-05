@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export interface Univercity extends mongoose.Document {
+export interface University extends mongoose.Document {
     readonly _id: string;
     readonly title: string;
     readonly location: string;

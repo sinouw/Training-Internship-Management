@@ -10,4 +10,8 @@ export const AdminLayoutRoutes: Routes = [
     { path:'agents',loadChildren:()=> import('../../layouts/admin-layout/agents/agents.module').then(m=>m.AgentsModule)},
     { path:'sessions-inter',loadChildren:()=> import('../../layouts/admin-layout/session-inter/session-inter.module').then(m=>m.SessionInterModule)},
     { path:'training-centers',loadChildren:()=> import('../../layouts/admin-layout/training-center/training-center.module').then(m=>m.TrainingCenterModule)},
+    
+    { path:'universities',loadChildren:()=> import('../../layouts/admin-layout/University/university.module').then(m=>m.UniversityModule)},
+    { path:'levels',loadChildren:()=> import('../../layouts/admin-layout/level/level.module').then(m=>m.LevelModule)},
+    { path:'internships',loadChildren:()=> import('../../layouts/admin-layout/internship/internship.module').then(m=>m.InternshipModule)},
 ];

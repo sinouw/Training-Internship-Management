@@ -21,7 +21,8 @@ import { LevelModule } from './shared/level/level.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         // uri: `mongodb://${configService.get('DB_URI')}/${configService.get('DB_NAME')}`,
-        uri: `mongodb+srv://${configService.get('DB_USER')}:${configService.get('DB_PWD')}@${configService.get('DB_URI')}/${configService.get('DB_NAME')}?${configService.get('DB_PARAMS')}`,
+        // uri: `mongodb+srv://${configService.get('DB_USER')}:${configService.get('DB_PWD')}@${configService.get('DB_URI')}/${configService.get('DB_NAME')}?${configService.get('DB_PARAMS')}`,
+        uri: `mongodb://localhost/${configService.get('DB_NAME')}`,
         useNewUrlParser: true
       }),
       inject: [ConfigService]

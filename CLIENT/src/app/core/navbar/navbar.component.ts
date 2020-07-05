@@ -29,12 +29,24 @@ export class NavbarComponent implements OnInit {
         var addionalRoutes = [
             { class: "", "icon": "layers", "path": "/events/edit", "title": "Edit Event" },
             { class: "", "icon": "layers", "path": "/events/add", "title": "Add Event" },
+
             { class: "", "icon": "layers", "path": "/agents/edit", "title": "Edit Agent" },
             { class: "", "icon": "layers", "path": "/agents/add", "title": "Add Agent" },
+
             { class: "", "icon": "layers", "path": "/sessions-inter/add", "title": "Add Session Inter" },
             { class: "", "icon": "layers", "path": "/sessions-inter/edit", "title": "Edit Session Inter" },
+
             { class: "", "icon": "layers", "path": "/training-centers/add", "title": "Add Training Center" },
             { class: "", "icon": "layers", "path": "/training-centers/edit", "title": "Edit Training Center" },
+            
+            { class: "", "icon": "layers", "path": "/universities/add", "title": "Add Universities" },
+            { class: "", "icon": "layers", "path": "/universities/edit", "title": "Edit Universities" },
+            
+            { class: "", "icon": "layers", "path": "/levels/add", "title": "Add Levels" },
+            { class: "", "icon": "layers", "path": "/levels/edit", "title": "Edit Levels" },
+            
+            { class: "", "icon": "layers", "path": "/internships/add", "title": "Add Internships" },
+            { class: "", "icon": "layers", "path": "/internships/edit", "title": "Edit Internships" },
         ]
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         this.listTitles = this.listTitles.concat(addionalRoutes)
