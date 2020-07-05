@@ -6,10 +6,12 @@ import { UsersModule } from './shared/users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from './core/config/config.module';
 import { ConfigService } from './core/config/config.service';
-import { EventModule } from './shared/event/event.module';
 import { TrainingCenterModule } from './shared/training-center/training-center.module';
 import { SessionInterModule } from './shared/session-inter/session-inter.module';
 import { SessionEmpModule } from './shared/session-emp/session-emp.module';
+import { InternshipModule } from './shared/internship/internship.module';
+import { UnviervcityModule } from './shared/unviervcity/unviervcity.module';
+import { LevelModule } from './shared/level/level.module';
 
 
 @Module({
@@ -25,15 +27,15 @@ import { SessionEmpModule } from './shared/session-emp/session-emp.module';
       inject: [ConfigService]
     }),
 
-
-
     AuthModule,
     UsersModule,
     ConfigModule,
-    EventModule,
     TrainingCenterModule,
     SessionInterModule,
-    SessionEmpModule
+    SessionEmpModule,
+    InternshipModule,
+    UnviervcityModule,
+    LevelModule
   ],
   controllers: [AppController],
   providers: [

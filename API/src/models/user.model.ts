@@ -16,7 +16,8 @@ export const UserSchema = new mongoose.Schema({
     description: { type: String, default: "" },
     avatarUrl: { type: String, default: "" },
     status: { type: Boolean, default: false },
-    roles   : [String]
+    roles   : [String],
+    internships   : [String]
 }, { timestamps: true });
 
 export interface  User extends mongoose.Document {
@@ -35,6 +36,7 @@ export interface  User extends mongoose.Document {
     readonly avatarUrl: string;
     readonly status: boolean;
     readonly roles   : string[]; 
+    readonly internships   : string[]; 
 }
 
 export class  CreateUserDto {

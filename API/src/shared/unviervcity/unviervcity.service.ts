@@ -1,12 +1,11 @@
-import { Event } from './../../models/event.model';
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Univercity } from 'src/models/internships.model';
 
 @Injectable()
-export class EventService {
-
-    constructor(@InjectModel('Event') private readonly Model: Model<Event>) { }
+export class UnviervcityService {
+    constructor(@InjectModel('Univercity') private readonly Model: Model<Univercity>) { }
 
     // fetch all documents
     async getAll(): Promise<Event[]> {

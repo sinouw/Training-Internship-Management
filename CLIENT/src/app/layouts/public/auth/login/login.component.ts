@@ -22,7 +22,7 @@ export class LoginComponent {
         if (token) {
           let currentRoles = token.roles;
           let isAdmin = currentRoles.some(role => currentRoles.includes("admin"));
-          if (isAdmin) this.router.navigateByUrl('/dashboard');
+          if (isAdmin) this.router.navigateByUrl('/events/calendar');
           else this.router.navigateByUrl('/events/calendar');
         }
     this.createFormModel()
@@ -42,7 +42,7 @@ export class LoginComponent {
         let token = this.accountService.getDecodedToken();
         let currentRoles = token.roles;
         let isAdmin = currentRoles.some(role => currentRoles.includes("admin"));
-        if (isAdmin) this.router.navigateByUrl('/dashboard');
+        if (isAdmin) this.router.navigateByUrl('/events/calendar');
         else this.router.navigateByUrl('/events/calendar');
       },
       err => {

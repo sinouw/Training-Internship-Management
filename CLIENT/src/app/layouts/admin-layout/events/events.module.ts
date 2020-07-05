@@ -3,9 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { EventsRoutingModule } from './events-routing.module';
 
-import { EventsListComponent } from './events-list/events-list.component';
-import { EventsAddComponent } from './events-add/events-add.component';
-import { EventsEditComponent } from './events-edit/events-edit.component';
 import { MaterialModule } from 'app/core/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventsCalendarComponent } from './events-calendar/events-calendar.component';
@@ -16,7 +13,7 @@ import 'hammerjs';
 // import 'core-js/es7/array';
 
 @NgModule({
-  declarations: [EventsListComponent,EventsAddComponent,EventsEditComponent, EventsCalendarComponent],
+  declarations: [EventsCalendarComponent],
   imports: [
     CommonModule,
     EventsRoutingModule,

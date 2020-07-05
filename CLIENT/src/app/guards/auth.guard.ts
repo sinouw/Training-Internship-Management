@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     } else {
       let currentRoles =this.service.getDecodedToken().roles;
       if (next.data.roles && next.data.roles.indexOf(currentRoles) === -1) {
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/events/calendar');
         return false;
     }
       return true;
