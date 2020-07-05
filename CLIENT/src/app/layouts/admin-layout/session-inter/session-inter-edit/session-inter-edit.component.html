@@ -86,7 +86,9 @@
                             <mat-tab label="Participants">
                                 <app-session-participant></app-session-participant>
                             </mat-tab>
-                            <mat-tab label="Training Centers">Centers</mat-tab>
+                            <mat-tab label="Training Centers">
+                                <app-session-center></app-session-center>
+                            </mat-tab>
                           </mat-tab-group>
                         <button mat-raised-button type="submit" (click)="onSubmit()"
                             [disabled]="sessionInterService.formModel.invalid"

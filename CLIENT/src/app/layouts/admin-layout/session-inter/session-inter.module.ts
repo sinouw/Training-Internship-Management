@@ -8,10 +8,11 @@ import { SessionInterListComponent } from './session-inter-list/session-inter-li
 import { MaterialModule } from 'app/core/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SessionParticipantComponent } from './session-participant/session-participant.component';
+import { SessionCenterComponent } from './session-center/session-center.component';
 
 
 @NgModule({
-  declarations: [SessionInterAddComponent, SessionInterEditComponent, SessionInterListComponent, SessionParticipantComponent],
+  declarations: [SessionInterAddComponent, SessionInterEditComponent, SessionInterListComponent, SessionParticipantComponent, SessionCenterComponent],
   imports: [
     CommonModule,
     SessionInterRoutingModule,

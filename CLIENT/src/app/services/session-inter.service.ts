@@ -16,6 +16,7 @@ export class SessionInterService {
 
   formModel : FormGroup
   participantsDataSource = new MatTableDataSource();
+  centersDataSource = new MatTableDataSource();
   
   fillFormModel(body){
     this.formModel.patchValue({

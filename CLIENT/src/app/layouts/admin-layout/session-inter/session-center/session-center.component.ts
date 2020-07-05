@@ -2,26 +2,27 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { TrainingCenterService } from 'app/services/training-center.service';
 import { AccountService } from 'app/services/account.service';
-import { UsersService } from 'app/services/users.service';
 import { Router } from '@angular/router';
 import { SessionInterService } from 'app/services/session-inter.service';
 
 @Component({
-  selector: 'app-session-participant',
-  templateUrl: './session-participant.component.html',
-  styleUrls: ['./session-participant.component.css']
+  selector: 'app-session-center',
+  templateUrl: './session-center.component.html',
+  styleUrls: ['./session-center.component.css']
 })
-export class SessionParticipantComponent {
+export class SessionCenterComponent {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['position', 'firstname', 'lastname', 'phone', 'roles','status','createdAt'];
+  displayedColumns: string[] = ['position', 'title', 'location','status', 'createdAt'];
 
-  constructor(private accountService : AccountService,
+  constructor(
+    private trainingCenterService : TrainingCenterService,
     private sessionInterService : SessionInterService,
-    private usersService : UsersService,
+    private accountService : AccountService,
     private router : Router) { 
     let token =this.accountService.getDecodedToken();
     let currentRoles = token.roles;
@@ -29,33 +30,34 @@ export class SessionParticipantComponent {
     let isAdmin = currentRoles.some(role => currentRoles.includes("admin"));
     if(isAdmin) this.getAllForAdmin()
     else this.getAllForAdmin()
+
   }
 
   applyFilter(filterValue: string) {
-    this.sessionInterService.participantsDataSource.filter = filterValue.trim().toLowerCase();
-    if (this.sessionInterService.participantsDataSource.paginator) {
-      this.sessionInterService.participantsDataSource.paginator.firstPage();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
   }
 
   getAllForAdmin() {
-    this.usersService.getAll()
+    this.trainingCenterService.getAll()
     .subscribe((response : any)=>{
-     console.log("users : ",response)
-     response = response.filter(x=>x.roles.includes('employee'))
+     console.log("centers : ",response)
      console.log("form.value : ",this.sessionInterService.formModel.value)
      let formModel = this.sessionInterService.formModel.value
-     if (formModel && formModel.participants && formModel.participants.length>0) {
+     if (formModel && formModel.centersList && formModel.centersList.length>0) {
       response.map(x=>{
-        if (formModel.participants.includes(x._id)) {
+        if (formModel.centersList.includes(x._id)) {
           x.checked = true
         }
       })
      }else{
        response.map(x=>x.checked = false)
      }
-     this.sessionInterService.participantsDataSource = new MatTableDataSource(response);
-    this.sessionInterService.participantsDataSource.paginator = this.paginator;
+     this.sessionInterService.centersDataSource = new MatTableDataSource(response);
+    this.sessionInterService.centersDataSource.paginator = this.paginator;
     })
   }
+
 }
