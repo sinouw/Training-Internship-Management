@@ -11,6 +11,7 @@ import { EventsService } from 'app/services/events.service';
 import { AccountService } from 'app/services/account.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'app/services/notifications.service';
+import { SessionInterService } from 'app/services/session-inter.service';
 
 const colors: any = {
   red: {
@@ -36,7 +37,7 @@ export class EventsCalendarComponent {
 
   refresh: Subject<any> = new Subject();
 
-  constructor(private eventSerivce: EventsService,
+  constructor(private sessionInterSerivce: SessionInterService,
     private accountService: AccountService,
     private notificationsService: NotificationsService,
     private router: Router) {
@@ -54,35 +55,19 @@ export class EventsCalendarComponent {
   events: CalendarEvent[] = [];
 
   getAllForAdmin(currentRoles) {
-    if (currentRoles == "") {
-      this.eventSerivce.getAll()
+    // if (currentRoles == "") {
+      this.sessionInterSerivce.getAll()
         .subscribe((response: any) => {
           console.log("events : ", response)
           if (response.length > 0) {
             response.map(e => {
-              this.addEvents(e.title, new Date(e.startDate), new Date(e.endDate))
+              if (e.status) {
+                this.addEvents(e.title, new Date(e.startDate), new Date(e.endDate))
+              }
             })
           }
         })
-      } else {
-        this.eventSerivce.getAll()
-      .subscribe((response: any) => {
-        console.log("events : ", response)
-        if (response.length > 0) {
-          response.map(e => {
-
-            
-            
-            if (currentRoles.some(x=>e.roles.includes(x))) {
-
-
-              this.addEvents(e.title, new Date(e.startDate), new Date(e.endDate))
-            }
-          })
-        }
-      })
-
-    }
+      // }
   }
 
   addEvents(title, startRes, endRes): void {

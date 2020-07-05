@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TrainingCenterService } from 'app/services/training-center.service';
 import { NotificationsService } from 'app/services/notifications.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-training-center-add',
@@ -8,6 +9,9 @@ import { NotificationsService } from 'app/services/notifications.service';
   styleUrls: ['./training-center-add.component.css']
 })
 export class TrainingCenterAddComponent {
+
+  @ViewChild('regForm', {static: false}) myForm: NgForm;
+
 
   constructor(
     private trainingCenterService : TrainingCenterService,
@@ -22,6 +26,8 @@ export class TrainingCenterAddComponent {
     .subscribe(response=>{
       console.log("Added successfully : ",response)
       this.notificationsService.showNotification('success','Successful Addition - Training Center Successfully Added.')
+      this.trainingCenterService.formModel.reset(), 
+      this.myForm.resetForm();
     },err=>{
       this.notificationsService.showNotification('danger','Something Wrong - Please Enter Valid Information.')
 

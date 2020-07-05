@@ -9,7 +9,7 @@
                         <p class="card-category">Add Training Center Details</p>
                     </div>
                     <div class="card-body">
-                        <form [formGroup]="trainingCenterService.formModel" (ngSubmit)="onSubmit()">
+                        <form [formGroup]="trainingCenterService.formModel" #regForm="ngForm">
 
                             <div class="row">
                                 <div class="col-md-3">

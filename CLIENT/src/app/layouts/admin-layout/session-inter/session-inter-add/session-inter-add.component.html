@@ -9,7 +9,7 @@
                         <p class="card-category">Add Session Inter Details</p>
                     </div>
                     <div class="card-body">
-                        <form [formGroup]="sessionInterService.formModel" (ngSubmit)="onSubmit()">
+                        <form [formGroup]="sessionInterService.formModel" #regForm="ngForm">
 
                             <div class="row">
                                 <div class="col-md-3">
@@ -90,7 +90,9 @@
                           </mat-tab-group>
                         <button mat-raised-button type="submit" (click)="onSubmit()"
                             [disabled]="sessionInterService.formModel.invalid"
-                            class="btn btn-outline-danger pull-right mt-3">Create</button>
+                            class="btn btn-outline-danger pull-right mt-3">
+                            Create
+                        </button>
                         <div class="clearfix"></div>
                     </div>
                 </div>
