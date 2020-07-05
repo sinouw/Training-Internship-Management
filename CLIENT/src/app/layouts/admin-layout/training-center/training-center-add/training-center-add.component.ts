@@ -28,6 +28,10 @@ export class TrainingCenterAddComponent {
       this.notificationsService.showNotification('success','Successful Addition - Training Center Successfully Added.')
       this.trainingCenterService.formModel.reset(), 
       this.myForm.resetForm();
+      this.trainingCenterService.formModel.patchValue({
+        createdAt : new Date().toISOString().slice(0, 16),
+        status : false,
+      })
     },err=>{
       this.notificationsService.showNotification('danger','Something Wrong - Please Enter Valid Information.')
 

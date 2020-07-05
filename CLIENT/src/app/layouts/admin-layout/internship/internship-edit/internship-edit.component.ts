@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TrainingCenterService } from 'app/services/training-center.service';
 import { NotificationsService } from 'app/services/notifications.service';
 import { Router } from '@angular/router';
+import { InternshipService } from 'app/services/internship.service';
 
 @Component({
   selector: 'app-internship-edit',
@@ -10,22 +10,22 @@ import { Router } from '@angular/router';
 })
 export class InternshipEditComponent {
 
-  constructor(private trainingCenterService : TrainingCenterService,
+  constructor(private internshipService : InternshipService,
     private notificationsService :NotificationsService,
     private router : Router) {
-    if (!this.trainingCenterService.formModel.value._id) {
-      this.router.navigateByUrl('training-centers/list')
+    if (!this.internshipService.formModel.value._id) {
+      this.router.navigateByUrl('internships/list')
     }else{
-      console.log(this.trainingCenterService.formModel.value.startDate);  
+      console.log(this.internshipService.formModel.value.startDate);  
     }
    }
 
   onSubmit(){
-    console.log("this.formModel.value : ",this.trainingCenterService.formModel.value)
-    this.trainingCenterService.editById(this.trainingCenterService.formModel.value._id,this.trainingCenterService.formModel.value)
+    console.log("this.formModel.value : ",this.internshipService.formModel.value)
+    this.internshipService.editById(this.internshipService.formModel.value._id,this.internshipService.formModel.value)
     .subscribe(response=>{
       console.log("Edited successfully : ",response)
-      this.notificationsService.showNotification('success','Successful Edition - Session Successfully Edited.')
+      this.notificationsService.showNotification('success','Successful Edition - Internship Successfully Edited.')
     },err=>{
       this.notificationsService.showNotification('danger','Something Wrong - Please Enter Valid Information.')
 

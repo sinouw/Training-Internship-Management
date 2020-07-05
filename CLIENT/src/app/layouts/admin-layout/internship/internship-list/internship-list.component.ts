@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { TrainingCenterService } from 'app/services/training-center.service';
 import { AccountService } from 'app/services/account.service';
 import { Router } from '@angular/router';
+import { InternshipService } from 'app/services/internship.service';
 
 @Component({
   selector: 'app-internship-list',
@@ -16,9 +16,9 @@ export class InternshipListComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['position', 'title', 'location','status', 'createdAt', 'action'];
+  displayedColumns: string[] = ['position', 'title','status', 'createdAt', 'action'];
 
-  constructor(private trainingCenterService : TrainingCenterService,
+  constructor(private internshipService : InternshipService,
     private accountService : AccountService,
     private router : Router) { 
     let token =this.accountService.getDecodedToken();
@@ -38,7 +38,7 @@ export class InternshipListComponent {
   }
 
   getAllForAdmin() {
-    this.trainingCenterService.getAll()
+    this.internshipService.getAll()
     .subscribe((response : any)=>{
      console.log("training center : ",response)
      this.dataSource = new MatTableDataSource(response);
@@ -47,12 +47,12 @@ export class InternshipListComponent {
   }
 
   editById(body){
-    this.trainingCenterService.fillFormModel(body)
-    this.router.navigateByUrl('/training-centers/edit')
+    this.internshipService.fillFormModel(body)
+    this.router.navigateByUrl('/internships/edit')
   }
 
   deleteById(id,index){
-    this.trainingCenterService.deleteById(id)
+    this.internshipService.deleteById(id)
     .subscribe(
       (res: any) => {
         console.log(res);

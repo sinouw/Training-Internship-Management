@@ -24,9 +24,13 @@ export class UniversityAddComponent {
     this.universityService.createNew(this.universityService.formModel.value)
     .subscribe(response=>{
       console.log("Added successfully : ",response)
-      this.notificationsService.showNotification('success','Successful Addition - Universities Successfully Added.')
+      this.notificationsService.showNotification('success','Successful Addition - University Successfully Added.')
       this.universityService.formModel.reset(), 
       this.myForm.resetForm();
+      this.universityService.formModel.patchValue({
+        createdAt : new Date().toISOString().slice(0, 16),
+        status : false,
+      })
     },err=>{
       this.notificationsService.showNotification('danger','Something Wrong - Please Enter Valid Information.')
 

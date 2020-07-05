@@ -30,6 +30,8 @@ export class SessionInterAddComponent {
     this.sessionInterService.formModel.patchValue({
       startDate : new Date().toISOString().slice(0, 16),
       endDate : new Date().toISOString().slice(0, 16),
+      createdAt : new Date().toISOString().slice(0, 16),
+      status : false,
     })
     this.sessionInterService.participantsDataSource.data.map((x:any)=>x.checked = false)
     this.sessionInterService.centersDataSource.data.map((x:any)=>x.checked = false)

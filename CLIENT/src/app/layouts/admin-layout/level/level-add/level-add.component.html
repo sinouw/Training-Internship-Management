@@ -1,4 +1,3 @@
-<p>level-add works!</p>
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -6,54 +5,46 @@
 
                 <div class="card">
                     <div class="card-header card-header-info">
-                        <h4 class="card-title">Add Training Center</h4>
-                        <p class="card-category">Add Training Center Details</p>
+                        <h4 class="card-title">Add Level</h4>
+                        <p class="card-category">Add Level Details</p>
                     </div>
                     <div class="card-body">
-                        <form [formGroup]="trainingCenterService.formModel" #regForm="ngForm">
+                        <form [formGroup]="levelService.formModel" #regForm="ngForm">
 
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Title" formControlName="title">
                                         <mat-error
-                                            *ngIf="trainingCenterService.formModel.get('title').hasError('required') && trainingCenterService.formModel.get('title').touched">
+                                            *ngIf="levelService.formModel.get('title').hasError('required') && levelService.formModel.get('title').touched">
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Location" formControlName="location">
-                                        <mat-error
-                                            *ngIf="trainingCenterService.formModel.get('location').hasError('required') && trainingCenterService.formModel.get('location').touched">
-                                            This field should not be empty.</mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <mat-select placeholder="Status" formControlName="status">
                                             <mat-option [value]="true">Active</mat-option>
                                             <mat-option [value]="false">Not Active</mat-option>
                                         </mat-select>
                                         <mat-error
-                                            *ngIf="trainingCenterService.formModel.get('status').hasError('required') && trainingCenterService.formModel.get('status').touched">
+                                            *ngIf="levelService.formModel.get('status').hasError('required') && levelService.formModel.get('status').touched">
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Creation Date"
-                                            [value]="trainingCenterService.formModel.get('createdAt').value | date : 'medium'"
+                                            [value]="levelService.formModel.get('createdAt').value | date : 'medium'"
                                             disabled>
                                         <mat-error
-                                            *ngIf="trainingCenterService.formModel.get('createdAt').hasError('required') && trainingCenterService.formModel.get('createdAt').touched">
+                                            *ngIf="levelService.formModel.get('createdAt').hasError('required') && levelService.formModel.get('createdAt').touched">
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
                         </form>
                         <button mat-raised-button type="submit" (click)="onSubmit()"
-                            [disabled]="trainingCenterService.formModel.invalid"
+                            [disabled]="levelService.formModel.invalid"
                             class="btn btn-outline-danger pull-right">Create</button>
                         <div class="clearfix"></div>
                     </div>
@@ -64,24 +55,24 @@
                     <div class="card-avatar" style="width: 150px;height: 150px;background-color: white;">
                         <!-- <img class="img" src="./assets/img/faces/marc.jpg" /> -->
                         <div style="padding-top: 50px;font-size: 60px;">
-                            <p *ngIf="!trainingCenterService.formModel.value.title;else titleBlocChar"><strong>T</strong>
+                            <p *ngIf="!levelService.formModel.value.title;else titleBlocChar"><strong>L</strong>
                             </p>
                             <ng-template #titleBlocChar>
-                                <p><strong>{{trainingCenterService.formModel.value.title[0]}}</strong></p>
+                                <p><strong>{{levelService.formModel.value.title[0]}}</strong></p>
                             </ng-template>
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-category text-gray">Training Center</h6>
+                        <h6 class="card-category text-gray">Level</h6>
                         <h4 class="card-title" style="display: -webkit-inline-box;">
-                            <i *ngIf="trainingCenterService.formModel.value.status;else elseStatusBloc"
+                            <i *ngIf="levelService.formModel.value.status;else elseStatusBloc"
                                 style="margin-right: 10px;" class='fa fa-circle font-success f-12'></i>
                             <ng-template #elseStatusBloc>
                                 <i class='fa fa-circle font-danger f-12' style="margin-right: 10px;"></i>
                             </ng-template>
-                            <p *ngIf="!trainingCenterService.formModel.value.title;else titleBloc">Training Center Name</p>
+                            <p *ngIf="!levelService.formModel.value.title;else titleBloc">Level Name</p>
                             <ng-template #titleBloc>
-                                <p>{{trainingCenterService.formModel.value.title}}</p>
+                                <p>{{levelService.formModel.value.title}}</p>
                             </ng-template>
                         </h4>
                     </div>

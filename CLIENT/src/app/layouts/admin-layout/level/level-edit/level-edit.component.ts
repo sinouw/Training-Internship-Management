@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TrainingCenterService } from 'app/services/training-center.service';
 import { NotificationsService } from 'app/services/notifications.service';
 import { Router } from '@angular/router';
+import { LevelService } from 'app/services/level.service';
 
 @Component({
   selector: 'app-level-edit',
@@ -10,22 +10,22 @@ import { Router } from '@angular/router';
 })
 export class LevelEditComponent {
 
-  constructor(private trainingCenterService : TrainingCenterService,
+  constructor(private levelService : LevelService,
     private notificationsService :NotificationsService,
     private router : Router) {
-    if (!this.trainingCenterService.formModel.value._id) {
-      this.router.navigateByUrl('training-centers/list')
+    if (!this.levelService.formModel.value._id) {
+      this.router.navigateByUrl('levels/list')
     }else{
-      console.log(this.trainingCenterService.formModel.value.startDate);  
+      console.log(this.levelService.formModel.value.startDate);  
     }
    }
 
   onSubmit(){
-    console.log("this.formModel.value : ",this.trainingCenterService.formModel.value)
-    this.trainingCenterService.editById(this.trainingCenterService.formModel.value._id,this.trainingCenterService.formModel.value)
+    console.log("this.formModel.value : ",this.levelService.formModel.value)
+    this.levelService.editById(this.levelService.formModel.value._id,this.levelService.formModel.value)
     .subscribe(response=>{
       console.log("Edited successfully : ",response)
-      this.notificationsService.showNotification('success','Successful Edition - Session Successfully Edited.')
+      this.notificationsService.showNotification('success','Successful Edition - Level Successfully Edited.')
     },err=>{
       this.notificationsService.showNotification('danger','Something Wrong - Please Enter Valid Information.')
 

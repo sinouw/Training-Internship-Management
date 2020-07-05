@@ -56,6 +56,10 @@ export class AgentsAddComponent {
         this.notificationsService.showNotification('success', 'Successful Addition - Agent Successfully Added.')
         this.usersService.formModel.reset(), 
         this.myForm.resetForm();
+        this.usersService.formModel.patchValue({
+          createdAt : new Date().toISOString().slice(0, 16),
+          status : false,
+        })
       },
       err => {
         console.log("err : ", err)

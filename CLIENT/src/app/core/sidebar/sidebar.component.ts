@@ -9,11 +9,12 @@ export const ROUTES: any[] = [
     { path: '/events/calendar', title: "Calendar",  icon:'event', class: '' },
     // { role :'admin', path: '/events/list', title: "Events List",  icon:'event_note', class: '' },
     { role :'admin', path: '/sessions-inter/list', title: "Sessions Inter List",  icon:'event_note', class: '' },
-    { role :'admin', path: '/training-centers/list', title: "Training Centers List",  icon:'layers', class: '' },
-    { role :'admin', path: '/universities/list', title: "Universities List",  icon:'layers', class: '' },
+    { role :'admin', path: '/training-centers/list', title: "Training Centers List",  icon:'account_balance', class: '' },
+    { role :'admin', path: '/universities/list', title: "Universities List",  icon:'business', class: '' },
     { role :'admin', path: '/levels/list', title: "Levels List",  icon:'layers', class: '' },
-    { role :'admin', path: '/internships/list', title: "Internships List",  icon:'layers', class: '' },
-    { role :'admin', path: '/agents/list', title: "Agents List",  icon:'people', class: '' },
+    { role :'admin', path: '/internships/list', title: "Internships List",  icon:'article', class: '' },
+    { role :'admin', path: '/agents/list', title: "Employees List",  icon:'people', class: '' },
+    { role :'admin', path: '#', title: "Inters List",  icon:'people', class: '' },
     { path: '/profile', title: "User Profile",  icon:'person', class: '' },
 ];
 
