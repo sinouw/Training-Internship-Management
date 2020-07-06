@@ -43,10 +43,16 @@ export class NavbarComponent implements OnInit {
             { class: "", "icon": "layers", "path": "/universities/edit", "title": "Edit University" },
             
             { class: "", "icon": "layers", "path": "/levels/add", "title": "Add Levels" },
-            { class: "", "icon": "layers", "path": "/levels/edit", "title": "Edit Levels" },
+            { class: "", "icon": "layers", "path": "/levels/edit", "title": "Edit Level" },
             
-            { class: "", "icon": "layers", "path": "/internships/add", "title": "Add Internships" },
-            { class: "", "icon": "layers", "path": "/internships/edit", "title": "Edit Internships" },
+            { class: "", "icon": "layers", "path": "/internships/add", "title": "Add Internship" },
+            { class: "", "icon": "layers", "path": "/internships/edit", "title": "Edit Internship" },
+            
+            { class: "", "icon": "layers", "path": "/employees/add", "title": "Add Employee" },
+            { class: "", "icon": "layers", "path": "/employees/edit", "title": "Edit Employee" },
+            
+            { class: "", "icon": "layers", "path": "/interns/add", "title": "Add Intern" },
+            { class: "", "icon": "layers", "path": "/interns/edit", "title": "Edit Intern" },
         ]
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         this.listTitles = this.listTitles.concat(addionalRoutes)
