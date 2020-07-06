@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NotificationsService } from 'app/services/notifications.service';
 import { ValidationErrors } from '@angular/forms';
 import { LevelService } from 'app/services/level.service';
+import { UniversityService } from 'app/services/university.service';
 
 @Component({
   selector: 'app-intern-edit',
@@ -14,10 +15,12 @@ export class InternEditComponent {
 
   roles: any = ["intern"]
   levels : any = [];
+  universities : any = [];
 
   constructor(
     private usersService: UsersService,
     private levelService: LevelService,
+    private universityService: UniversityService,
     private router: Router,
     private notificationsService: NotificationsService) {
     if (!this.usersService.formModel.value._id) {
@@ -25,6 +28,8 @@ export class InternEditComponent {
     } else {
       delete this.usersService.formModel.value.passwords
       console.log("formModel : ", this.usersService.formModel.value)
+      this.getAllLevels()
+      this.getAllUniversities()
     }
   }
 
@@ -45,6 +50,14 @@ export class InternEditComponent {
     .subscribe((response : any)=>{
      console.log("levels: ",response)
       this.levels = response
+    })
+  }
+  
+  getAllUniversities() {
+    this.universityService.getAll()
+    .subscribe((response : any)=>{
+     console.log("levels: ",response)
+      this.universities = response
     })
   }
 
@@ -68,7 +81,9 @@ export class InternEditComponent {
       email: this.usersService.formModel.value.email,
       roles: this.roles,
       status: this.usersService.formModel.value.status,
-      internships :internships
+      internships :internships,
+      levelId: this.usersService.formModel.value.levelId,
+      universityId: this.usersService.formModel.value.universityId,
     }
 
     this.usersService.editById(this.usersService.formModel.value._id,body).subscribe(

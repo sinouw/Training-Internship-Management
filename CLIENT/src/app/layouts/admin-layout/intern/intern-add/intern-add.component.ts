@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, ValidationErrors } from '@angular/forms';
 import { UsersService } from 'app/services/users.service';
 import { NotificationsService } from 'app/services/notifications.service';
+import { LevelService } from 'app/services/level.service';
+import { UniversityService } from 'app/services/university.service';
 
 @Component({
   selector: 'app-intern-add',
@@ -13,12 +15,34 @@ export class InternAddComponent {
   @ViewChild('regForm', {static: false}) myForm: NgForm;
   
   roles: any = ["intern"]
+  levels: any = []
+  universities: any = []
 
-  constructor(private usersService : UsersService,
+  constructor(
+    private usersService : UsersService,
+    private universityService: UniversityService,
+    private levelService : LevelService,
     private notificationsService: NotificationsService) { 
       this.usersService.createFormModel()
+      this.getAllLevels()
+      this.getAllUniversities()
     }
 
+    getAllLevels() {
+      this.levelService.getAll()
+      .subscribe((response : any)=>{
+       console.log("levels: ",response)
+        this.levels = response
+      })
+    }
+
+    getAllUniversities() {
+      this.universityService.getAll()
+      .subscribe((response : any)=>{
+       console.log("levels: ",response)
+        this.universities = response
+      })
+    }
 
   getFormValidationErrors() {
     Object.keys(this.usersService.formModel.controls).forEach(key => {
@@ -55,6 +79,8 @@ export class InternAddComponent {
       description:this.usersService.formModel.value.description,
       internships:internships,
       roles:this.roles,
+      levelId: this.usersService.formModel.value.levelId,
+      universityId: this.usersService.formModel.value.universityId,
       status: this.usersService.formModel.value.status,
     }
     debugger

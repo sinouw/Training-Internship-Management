@@ -30,11 +30,11 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <mat-select placeholder="Role" multiple formControlName="roles" required>
-                                            <mat-option [value]="role" *ngFor="let role of roles">{{role}}</mat-option>
+                                        <mat-select placeholder="University" formControlName="universityId" required>
+                                            <mat-option [value]="university._id" *ngFor="let university of universities">{{university.title}}</mat-option>
                                         </mat-select>
                                         <mat-error
                                             *ngIf="usersService.formModel.get('roles').hasError('required') && usersService.formModel.get('roles').touched">
@@ -43,15 +43,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <mat-select placeholder="Role" multiple formControlName="roles" required>
-                                            <mat-option [value]="role" *ngFor="let role of roles">{{role}}</mat-option>
+                                        <mat-select placeholder="Level" formControlName="levelId" required>
+                                            <mat-option [value]="level._id" *ngFor="let level of levels">{{level.title}}</mat-option>
                                         </mat-select>
                                         <mat-error
                                             *ngIf="usersService.formModel.get('roles').hasError('required') && usersService.formModel.get('roles').touched">
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
