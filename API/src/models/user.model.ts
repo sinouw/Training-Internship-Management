@@ -17,7 +17,9 @@ export const UserSchema = new mongoose.Schema({
     avatarUrl: { type: String, default: "" },
     status: { type: Boolean, default: false },
     roles   : [String],
-    internships   : [String]
+    internships   : [String],
+    levelId   : mongoose.Types.ObjectId,
+    universityId   : mongoose.Types.ObjectId
 }, { timestamps: true });
 
 export interface  User extends mongoose.Document {
@@ -37,6 +39,8 @@ export interface  User extends mongoose.Document {
     readonly status: boolean;
     readonly roles   : string[]; 
     readonly internships   : string[]; 
+    readonly levelId: string;
+    readonly universityId: string;
 }
 
 export class  CreateUserDto {
@@ -46,6 +50,10 @@ export class  CreateUserDto {
     readonly email: string;
     readonly password: string;
     readonly roles   : string[]; 
+    readonly levelId: string;
+    readonly universityId: string;
+    readonly internships   : string[]; 
+
 }
 
 UserSchema.pre('save', function (next) {

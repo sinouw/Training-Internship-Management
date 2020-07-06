@@ -2,12 +2,17 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  
   formModel: FormGroup
+  internshipsDataSource = new MatTableDataSource();
+
+
   constructor(private http: HttpClient,private formBuilder: FormBuilder) {
     this.createFormModel()
    }
@@ -30,6 +35,9 @@ export class UsersService {
       postalCode: body.postalCode,
       description: body.description,
       roles: body.roles,
+      levelId: body.levelId,
+      universityId: body.universityId,
+      internships: body.internships,
       status: body.status,
       createdAt: body.createdAt,
     })
@@ -50,6 +58,9 @@ export class UsersService {
       postalCode:'' ,
       description: '',
       roles: [''],
+      internships: [],
+      universityId: [''],
+      levelId: [''],
       status: [true, [Validators.required]],
       createdAt: [new Date()],
       passwords: this.formBuilder.group({

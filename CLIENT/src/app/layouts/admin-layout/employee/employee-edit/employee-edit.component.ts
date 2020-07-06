@@ -46,7 +46,7 @@ export class EmployeeEditComponent {
       lastname: this.usersService.formModel.value.lastname,
       phone: this.usersService.formModel.value.phone,
       email: this.usersService.formModel.value.email,
-      roles: this.usersService.formModel.value.roles,
+      roles: this.roles,
       status: this.usersService.formModel.value.status,
     }
 

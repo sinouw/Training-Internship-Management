@@ -33,6 +33,13 @@ export class InternAddComponent {
     }
 
   onSubmit() {
+
+    let internships = []
+    this.usersService.internshipsDataSource.data.map((x:any)=>{
+      if (x.checked) {
+        internships.push(x._id)
+      }
+    })
     
     let body = {
       password : this.usersService.formModel.value.passwords.password,
@@ -46,7 +53,8 @@ export class InternAddComponent {
       country:this.usersService.formModel.value.country,
       postalCode:this.usersService.formModel.value.postalCode,
       description:this.usersService.formModel.value.description,
-      roles:this.usersService.formModel.value.roles,
+      internships:internships,
+      roles:this.roles,
       status: this.usersService.formModel.value.status,
     }
     debugger
@@ -61,6 +69,8 @@ export class InternAddComponent {
           createdAt : new Date().toISOString().slice(0, 16),
           status : false,
         })
+        this.usersService.internshipsDataSource.data.map((x:any)=>x.checked = false)
+
       },
       err => {
         console.log("err : ", err)

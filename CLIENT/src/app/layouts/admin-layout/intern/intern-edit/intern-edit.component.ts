@@ -3,6 +3,7 @@ import { UsersService } from 'app/services/users.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'app/services/notifications.service';
 import { ValidationErrors } from '@angular/forms';
+import { LevelService } from 'app/services/level.service';
 
 @Component({
   selector: 'app-intern-edit',
@@ -12,8 +13,11 @@ import { ValidationErrors } from '@angular/forms';
 export class InternEditComponent {
 
   roles: any = ["intern"]
+  levels : any = [];
 
-  constructor(private usersService: UsersService,
+  constructor(
+    private usersService: UsersService,
+    private levelService: LevelService,
     private router: Router,
     private notificationsService: NotificationsService) {
     if (!this.usersService.formModel.value._id) {
@@ -21,7 +25,6 @@ export class InternEditComponent {
     } else {
       delete this.usersService.formModel.value.passwords
       console.log("formModel : ", this.usersService.formModel.value)
-      
     }
   }
 
@@ -37,8 +40,25 @@ export class InternEditComponent {
     });
   }
 
+  getAllLevels() {
+    this.levelService.getAll()
+    .subscribe((response : any)=>{
+     console.log("levels: ",response)
+      this.levels = response
+    })
+  }
+
+
   onSubmit() {
     this.getFormValidationErrors()
+
+    console.log("this.formModel.value : ",this.usersService.formModel.value)
+    let internships = []
+    this.usersService.internshipsDataSource.data.map((x:any)=>{
+      if (x.checked) {
+        internships.push(x._id)
+      }
+    })
     
     let body = {
       firstname: this.usersService.formModel.value.firstname,
@@ -46,8 +66,9 @@ export class InternEditComponent {
       lastname: this.usersService.formModel.value.lastname,
       phone: this.usersService.formModel.value.phone,
       email: this.usersService.formModel.value.email,
-      roles: this.usersService.formModel.value.roles,
+      roles: this.roles,
       status: this.usersService.formModel.value.status,
+      internships :internships
     }
 
     this.usersService.editById(this.usersService.formModel.value._id,body).subscribe(

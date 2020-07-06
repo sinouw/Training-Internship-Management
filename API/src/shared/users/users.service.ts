@@ -84,7 +84,7 @@ export class UserService {
                         },
                         {
                             'roles' : {
-                                '$eq' : "Intern"
+                                '$eq' : "intern"
                             }
                         }
                     ]

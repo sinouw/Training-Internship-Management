@@ -10,17 +10,15 @@
                     <div class="card-body">
                         <form [formGroup]="usersService.formModel" (ngSubmit)="onSubmit()" #regForm="ngForm">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <mat-select placeholder="Role" multiple formControlName="roles" required>
-                                            <mat-option [value]="role" *ngFor="let role of roles">{{role}}</mat-option>
-                                        </mat-select>
+                                        <input matInput placeholder="Username" formControlName="username">
                                         <mat-error
-                                            *ngIf="usersService.formModel.get('roles').hasError('required') && usersService.formModel.get('roles').touched">
+                                            *ngIf="usersService.formModel.get('username').hasError('required') && usersService.formModel.get('username').touched">
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
                                         <mat-select placeholder="Status" formControlName="status">
                                             <mat-option [value]="true">Active</mat-option>
@@ -28,14 +26,6 @@
                                         </mat-select>
                                         <mat-error
                                             *ngIf="usersService.formModel.get('status').hasError('required') && usersService.formModel.get('status').touched">
-                                            This field should not be empty.</mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Username" formControlName="username">
-                                        <mat-error
-                                            *ngIf="usersService.formModel.get('username').hasError('required') && usersService.formModel.get('username').touched">
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>

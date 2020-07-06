@@ -46,7 +46,7 @@ export class EmployeeAddComponent {
       country:this.usersService.formModel.value.country,
       postalCode:this.usersService.formModel.value.postalCode,
       description:this.usersService.formModel.value.description,
-      roles:this.usersService.formModel.value.roles,
+      roles:this.roles,
       status: this.usersService.formModel.value.status,
     }
     debugger
